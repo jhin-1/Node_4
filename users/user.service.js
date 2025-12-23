@@ -10,7 +10,7 @@ const add_user = (req,res)=>{
     let id = users.length +1
     let exist_email = users.find(user=>user.email == email)
     if (exist_email){
-        return res.status(404).json({message:'email already exist'})
+        return res.status(404).json({message:'email already exist',email:exist_email.email})
     }else{
         users.push({id,name,age,email})
         fs.writeFileSync('./users/users.json',JSON.stringify(users))
@@ -85,5 +85,5 @@ module.exports = {
     get_user_by_name,
     minimum_age,
     get_user_by_id,
-    
+
 }
